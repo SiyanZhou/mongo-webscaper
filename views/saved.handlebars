@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row" id="articles">
-    <h5 id="saved">Scraped Articles:</h5>
+    <h5 id="saved">Saved Articles:</h5>
     {{#each article}}
 
     <article class="selection">
-      <button class='btn black saveArticle' id={{id}} type='save' name='action'>Save Article</button>
+      <button class='btn black saveArticle' id={{id}} type='save' name='action'>Delete Article</button>
       <h5 class="articleHead">{{title}}</h5>
       <a href="{{link}}" class="website">{{link}}</a>
     </article>

@@ -1,20 +1,27 @@
-// *****************************************************************************
-// Server.js - This file is the initial starting point for the Node/Express server.
-//
-// ******************************************************************************
-// *** Dependencies
-// =============================================================
+
 var express = require("express");
 var bodyParser = require("body-parser");
 var path = require("path");
+var mongoose = require("mongoose");
+
 
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
 
+var MONGODB_URI = "mongodb://Siyan:database@ds119820.mlab.com:19820/heroku_8dqnz7k3";
 
-// var db = require("./models");
+// Set mongoose to leverage built in JavaScript ES6 Promises
+// Connect to the Mongo DB
+mongoose.Promise = Promise;
+try {
+mongoose.connect(MONGODB_URI);
+console.log("connect to mango");
+}
+catch (e) {
+  console.log(e);
+}
 
 app.use(bodyParser.urlencoded({ extended: true }));
 

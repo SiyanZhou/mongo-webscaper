@@ -1,89 +1,103 @@
 /// need to finish the changes to the tables 
 var path = require("path");
-var gdp = require("../models/models.js");
-var SavedArticles = require("../models/savedarticles.js");
+var mongoose = require("mongoose");
+var db = require("../models");
+var axios = require("axios");
+var cheerio = require("cheerio");
 
 module.exports = function (app) {
 
+  app.get("/scrape", function (req, res) {
+    // First, we grab the body of the html with request
+    axios.get("http://www.echojs.com/").then(function (response) {
+      // Then, we load that into cheerio and save it to $ for a shorthand selector
+      var $ = cheerio.load(response.data);
 
-  app.get("/submit/:year/:category", function (req, res) {
+      // Now, we grab every h2 within an article tag, and do the following:
+      $("article h2").each(function (i, element) {
+        // Save an empty result object
+        var result = {};
 
-    var yearChosen = req.params.year;
-    console.log(yearChosen);
-    var categoryChosen = req.params.category;
-    console.log(categoryChosen);
-    // if (categoryChosen = "gdp") {
-    //   var table = gdp;
-    // }
+        // Add the text and href of every link, and save them as properties of the result object
+        result.title = $(this)
+          .children("a")
+          .text();
+        result.link = $(this)
+          .children("a")
+          .attr("href");
 
-    gdp.findAll({
-      attributes: ['code', 'gdpIdx'],
-      where: { year: yearChosen }
-    }
-    ).then(function (mapData) {
-      var Data = {
-        "took": 492,
-        "timed_out": false,
-        "_shards": {
-          "total": 5,
-          "successful": 3,
-          "failed": 0
-        },
-        "hits": {
-          "total": 30111166,
-          "max_score": 0,
-          "hits": []
-        },
-        "aggregations": {
-          "world_map": {
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0,
-            "buckets": []
-          }
-        }
-      };
-
-      mapData.forEach(function (gdp) {
-
-        var countryInfo = {
-          "key": gdp.dataValues.code,
-          "doc_count": gdp.dataValues.gdpIdx
-        }
-        Data.aggregations.world_map.buckets.push(countryInfo);
+        // Create a new Article using the `result` object built from scraping
+        db.Article.create(result)
+          .then(function (dbArticle) {
+            // View the added result in the console
+            // console.log(dbArticle);
+          })
+          .catch(function (err) {
+            // If an error occurred, send it to the client
+            return res.json(err);
+          });
       });
-      res.send(JSON.stringify(Data));
 
-      console.log(Data);
+      // If we were able to successfully scrape and save an Article, send a message to the client
+      db.Article.find({})
+        .then(function (data) {
+
+          var savedArticles = [];
+          data.forEach(function (article) {
+            var articleObject = {
+              title: article.title,
+              link: article.link,
+              id: article._id
+            }
+            // console.log(articleObject.id); 
+            savedArticles.push(articleObject);
+          })
+
+
+          res.render("index", { article: savedArticles });
+        })
+        .catch(function (err) {
+          // If an error occurred, send it to the client
+          res.json(err);
+        });
     });
   });
 
+  
   app.post("/api/savearticle", function (req, res) {
+    db.Article.update(
+      { _id: req },
+      { $set: { Saved: true } },
+      function (err, updatedA) {
+        console.log(updatedA);
 
-    SavedArticles.create({
-      title: req.body.headline,
-      date: req.body.publishDate,
-      section: req.body.section,
-      link: req.body.website
 
-    }).then(function (saveart) {
-      res.json(saveart);
-    })
+      });
   });
 
-  app.get("/api/articles/saved", function (req, res) {
+  app.get("/saved", function (req, res) {
+    db.Article.find({ Saved: true })
+      .then(function (data) {
 
-    SavedArticles.findAll({
-      attributes: ['title', "date", "section", 'link']
+        var savedArticles = [];
+        data.forEach(function (article) {
+          var articleObject = {
+            title: article.title,
+            link: article.link,
+            id: article._id
+          }
+          // console.log(articleObject.id); 
+          savedArticles.push(articleObject);
+        })
 
-    }).then(function (data) {
-    var savedArticles = [];
-      data.forEach(function(article){
-        savedArticles.push(article.dataValues);
+
+        res.render("saved", { article: savedArticles });
       })
+      .catch(function (err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
 
-      // console.log(savedArticles);
-      res.render("index", {article: savedArticles});
     });
-  });
 
-}
+  }
