@@ -1,0 +1,444 @@
+/* Nav Bar */
+nav {
+  color: #fff;
+  background-color: black;
+}
+
+#home,
+#articleHB {
+  font-family: 'Yantramanav', sans-serif;
+  font-size: 18px;
+  margin-left: 20px;
+}
+
+/* Nav Logo */
+nav .brand-logo.right {
+  right: 3.5rem;
+  font-family: 'Play', sans-serif;
+}
+
+/* World Icon */
+
+#world {
+  height: 45px;
+  width: 45px;
+  margin-left: 40px;
+  margin-top: 8px;
+}
+
+/* Range Slider */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.range-slider {
+  width: 100%;
+  margin-right: 35px;
+}
+
+.row .col.s5 {
+  width: 48.666667%;
+}
+
+.range-slider__range {
+  -webkit-appearance: none;
+  width: calc(100% - (73px));
+  height: 10px;
+  border-radius: 5px;
+  background: #d7dcdf;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+
+.range-slider__range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+  transition: background .15s ease-in-out;
+}
+
+.range-slider__range::-webkit-slider-thumb:hover {
+  background: #000000;
+}
+
+.range-slider__range:active::-webkit-slider-thumb {
+  background: #000000;
+}
+
+.range-slider__range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 0;
+  border-radius: 50%;
+  background: #000000;
+  cursor: pointer;
+  transition: background .15s ease-in-out;
+}
+
+.range-slider__range::-moz-range-thumb:hover {
+  background: #000000;
+}
+
+.range-slider__range:active::-moz-range-thumb {
+  background: #000000;
+}
+
+.range-slider__range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px #fff, 0 0 0 6px #000000;
+}
+
+.range-slider__value {
+  display: inline-block;
+  position: relative;
+  width: 60px;
+  color: #fff;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 3px;
+  background: #000000;
+  padding: 5px 10px;
+  margin-left: 8px;
+}
+
+.range-slider__value:after {
+  position: absolute;
+  top: 8px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-top: 7px solid transparent;
+  border-right: 7px solid #000000;
+  border-bottom: 7px solid transparent;
+  content: '';
+}
+
+::-moz-range-track {
+  background: #d7dcdf;
+  border: 0;
+}
+
+input::-moz-focus-inner,
+input::-moz-focus-outer {
+  border: 0;
+}
+
+.range-slider__value {
+  float: right;
+  margin-top: 15px;
+}
+
+#year {
+  font-family: 'Yantramanav', sans-serif;
+  font-size: 15px;
+  float: left;
+}
+
+/* Headers */
+
+#country,
+#description,
+#articles,
+#dropdown {
+  font-family: 'Yantramanav', sans-serif;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+/* Dropdown Box */
+
+#dropdown {
+  margin-top: 20px;
+  margin-right: 35px;
+}
+
+.browser-default {
+  width: 22%;
+}
+
+/* Submit Button */
+
+#submitButton {
+  margin-top: 20px;
+  padding: 0px 30px 0px 30px;
+  width: 18%;
+}
+
+/* Gradient */
+
+#gradient {
+  position: relative;
+  border-radius: 12px;
+  height: 20px;
+  width: 100%;
+  z-index: 2;
+  top: 781px;
+}
+
+#low {
+  position: relative;
+  margin-top: 0px;
+  z-index: 2;
+  top: 776px;
+}
+
+#high {
+  position: relative;
+  float: right;
+  margin-top: -38px;
+  z-index: 2;
+  top: 776px;
+}
+
+/* Articles */
+
+article {
+  border: 1px solid black;
+  padding: 30px;
+  margin-bottom: 10px;
+}
+
+h5 {
+  font-family: 'Yantramanav', sans-serif;
+  font-size: 20px;
+}
+
+.articleHead {
+  font-family: 'Play', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0px
+}
+
+.btn {
+  float: right;
+}
+
+#saved {
+  font-family: 'Play', sans-serif;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Description Box */
+
+#description {
+  text-align: justify;
+  font-family: 'Yantramanav', sans-serif;
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1200px) {
+  .row .col.l5 {
+    width: 39.666667%;
+  }
+  /* Gradient Bar */
+  #gradient {
+    top: 686px;
+  }
+  #low {
+    top: 679px;
+  }
+  #high {
+    top: 680px;
+  }
+  /* Article */
+  article {
+    padding: 18px;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  /* Range Slider */
+  .row .col.m5 {
+    width: 39.666667%;
+  }
+  /* Dropbox */
+  .row .col.s3 {
+    width: 24%;
+  }
+  /* Submit Button */
+  .btn {
+    margin-left: 10px;
+  }
+  /* Gradient Bar */
+  #gradient {
+    top: 718px;
+  }
+  #low {
+    top: 714px;
+  }
+  #high {
+    top: 716px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  /* Range Slider */
+  .row .col.m5 {
+    width: 37.666667%;
+  }
+  /* Gradient Bar */
+  #gradient {
+    top: 541px;
+  }
+  #low {
+    top: 535px;
+  }
+  #high {
+    top: 535px;
+  }
+}
+
+@media only screen and (max-width: 414px) {
+  /* Range Slider */
+  .row .col.s12 {
+    width: 100%;
+  }
+  /* Dropdown */
+  #dropdown {
+    width: 100%;
+  }
+
+  /* Nav Logo */
+  nav .brand-logo.right {
+    font-size: 18px;
+    right: 1.5rem;
+  }
+  #world {
+    height: 33px;
+    width: 33px;
+    margin-left: 16px;
+    margin-top: 12px;
+  }
+
+  /* Article Nav */
+  #articleHB {
+    font-size: 12px;
+    margin-left: 14px;
+  }
+
+  /* Articles */
+  article {
+    padding: 10px;
+  }
+
+  .articleHead {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+  .website {
+    font-size: 12px;
+  }
+
+  .btn {
+    margin-left: 5px;
+    font-size: 11px;
+    padding: 0px 11px;
+  }
+
+  /* Submit Button */
+  #submitButton {
+    padding: 0 0 0 0;
+    width: 30%;
+  }
+
+  /* Gradient Bar */
+  #gradient {
+    top: 275px;
+    height: 10px;
+  }
+  #low {
+    top: 270px;
+    font-size: 10px;
+  }
+  #high {
+    top: 283px;
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  /* Range Slider */
+  .row .col.s5 {
+    width: 100%;
+  }
+  /* Dropdown */
+  #dropdown {
+    width: 100%;
+  }
+
+  /* Nav Logo */
+  nav .brand-logo.right {
+    font-size: 18px;
+    right: 1.5rem;
+  }
+  #world {
+    height: 33px;
+    width: 33px;
+    margin-left: 16px;
+    margin-top: 12px;
+  }
+
+  /* Article Nav */
+  #articleHB {
+    font-size: 12px;
+    margin-left: 14px;
+  }
+
+  /* Articles */
+  article {
+    padding: 10px;
+  }
+
+  .articleHead {
+    font-size: 18px;
+  }
+
+  h5 {
+    font-size: 14px;
+  }
+
+  .website {
+    font-size: 12px;
+  }
+
+  .btn {
+    margin-left: 5px;
+    font-size: 11px;
+    padding: 0px 11px;
+  }
+
+  /* Submit Button */
+  #submitButton {
+    padding: 0 0 0 0;
+    width: 30%;
+  }
+
+  /* Gradient Bar */
+  #gradient {
+    top: 275px;
+    height: 10px;
+  }
+  #low {
+    top: 270px;
+    font-size: 10px;
+  }
+  #high {
+    top: 283px;
+    font-size: 10px;
+  }
+}
